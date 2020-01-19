@@ -14,7 +14,7 @@
         android:layout_height="108dp"
         android:layout_gravity="center"
         android:padding="10dp"
-        android:src="@drawable/icon" />
+        android:src="@drawable/icon2" />
 
     <EditText
         android:id="@+id/Name"

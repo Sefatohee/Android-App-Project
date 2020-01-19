@@ -3,18 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    android:layout_height="500dp"
     android:padding="50dp"
     android:background="@color/colorPrimaryDark"
-    tools:context=".Notification">
+    tools:context=".Notification"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/notification"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#000"
+        android:layout_width="340dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="5dp"
         android:textAlignment="center"
-        android:textSize="20sp"
-        />
+        android:textColor="#000"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/icon1" />
 
 </LinearLayout>

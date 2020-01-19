@@ -37,7 +37,7 @@ import java.util.Map;
 import static com.android.volley.Request.Method.POST;
 
 public class Profile extends AppCompatActivity implements View.OnClickListener {
-    private EditText  date, consumed_calories,sugar_level,systolic_rate,diastolic_rate,weight;
+    private EditText  date, consumed_calories,sugar_level,systolic_rate,diastolic_rate,weight,day;
     private TextView username;
     private Button submit;
     private ProgressBar updateprogress;
@@ -50,6 +50,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     public static String name;
     View view;
 
+    public static int i = 1;
     private Boolean exit = false;
 
     @Override
@@ -68,6 +69,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         timePicker.setIs24HourView(true);
         consumed_calories = findViewById(R.id.consumed_calories);
         date = findViewById(R.id.date);
+        day = findViewById(R.id.day);
         systolic_rate = findViewById(R.id.systolicRate);
         diastolic_rate = findViewById(R.id.diastolicRate);
         weight = findViewById(R.id.weight);
@@ -75,6 +77,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         submit = findViewById(R.id.submit);
         submit.setOnClickListener(this);
         date.setOnClickListener(this);
+        day.setText(i);
 
     }
 
@@ -101,6 +104,14 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
         else if(item.getItemId() == R.id.myinfo){
             Intent intent = new Intent(getApplicationContext(),Personal_info.class);
+            startActivity(intent);
+        }
+        else if(item.getItemId() == R.id.notification){
+            Intent intent = new Intent(getApplicationContext(),Notification.class);
+            startActivity(intent);
+        }
+        else if(item.getItemId() == R.id.about){
+            Intent intent = new Intent(getApplicationContext(),About.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
@@ -154,6 +165,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         final String DiastolicRate = diastolic_rate.getText().toString().trim();
         final String SystolicRate = systolic_rate.getText().toString().trim();
         final String Weight = weight.getText().toString().trim();
+        i++;
 
 
         if(Date.isEmpty()){
@@ -192,7 +204,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             return;
         }
 
-        StringRequest stringRequest = new StringRequest(POST, Constant.url_updatebazar, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(POST, Constant.url_updateinfo, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -254,15 +266,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         String message;
         String Message;
         String title;
-
-        if(tk.equalsIgnoreCase("0")){
-            Message = "Hei "+Email+"\n You have update your meal\n "+"You have taken "+consumed_calories.getText().toString().trim()+" meal today";
-            title = "Meal updated";
-        }else{
-            Message = "Bazar is done by "+Email+"\n and the cost is "+sugar_level.getText().toString().trim()+" Tk";
-            title = "Bazar done !!!";
-        }
-
+            Message = "Hei "+name+"\n You have update your details\n "+"You have taken "+consumed_calories.getText().toString().trim()+"kilo calories today and" +
+                    "your sugar level was "+tk+" mili mol per " +
+                    "liter";
+            title = "profile updated";
         message = Message;
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
 

@@ -12,12 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.example.healthrecord.Notification"></activity>
-        <activity android:name="com.example.healthrecord.Personal_info" />
-        <activity android:name="com.example.healthrecord.SignIn" />
-        <activity android:name="com.example.healthrecord.Profile" />
-        <activity android:name="com.example.healthrecord.SignUp" />
-        <activity android:name="com.example.healthrecord.MainActivity">
+        <activity android:name=".PreviewInfo"></activity>
+        <activity android:name=".About" />
+        <activity android:name=".Notification" />
+        <activity android:name=".Personal_info" />
+        <activity android:name=".SignIn" />
+        <activity android:name=".Profile" />
+        <activity android:name=".SignUp" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
