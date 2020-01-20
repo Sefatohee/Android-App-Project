@@ -17,6 +17,6 @@ public class Notification extends AppCompatActivity {
         message = getIntent().getStringExtra("Message");
 
         textView = findViewById(R.id.notification);
-        textView.setText(message);
+        textView.setText(Profile.message);
     }
 }

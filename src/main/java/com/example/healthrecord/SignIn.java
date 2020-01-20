@@ -54,6 +54,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
         if(sharedPreferences.contains("Email") && sharedPreferences.contains("Password")){
             email.setText(sharedPreferences.getString("Email","nothing"));
+            Profile.Email = sharedPreferences.getString("Email","nothing");
             password.setText(sharedPreferences.getString("Password","nothing"));
         }
 
@@ -106,13 +107,14 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                         SharedPreferences.Editor editor = getSharedPreferences("login", MODE_PRIVATE).edit();
                         editor.putString("Email",Email);
                         editor.putString("Password",loginPass);
+                        editor.putString("Name", Profile.name);
                         editor.apply();
 
                         email.setText(null);
                         password.setText(null);
 
                         Intent intent = new Intent(getApplicationContext(),Profile.class);
-                        intent.putExtra("Email",Email);
+                        //intent.putExtra("Email",Email);
                         startActivity(intent);
                     }else{
                         loginprogress.setVisibility(View.GONE);

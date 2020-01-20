@@ -34,7 +34,7 @@ public class PreviewInfo extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        webView = findViewById(R.id.webview_review);
+        webView = findViewById(R.id.webview_preview);
 
         preview_info();
     }
@@ -63,11 +63,13 @@ public class PreviewInfo extends AppCompatActivity {
 
                         htmlMiddle +=   "   <tr>\n" +
                                 "<td>"+element[0]+"</td>\n" +
-                                "<td>"+element[1]+"/6"+"</td>\n" +
-                                "<td>"+element[2]+"/22"+"</td>\n" +
-                                "<td>"+element[3]+"/120"+"</td>\n" +
-                                "<td>"+element[4]+"/80"+"</td>\n" +
-                                "<td>"+element[5]+"</td>\n" +
+                                "<td>"+element[1]+"</td>\n" +
+                                "<td>"+element[2]+"</td>\n" +
+                                "<td>"+element[3]+"/6"+"</td>\n" +
+                                "<td>"+element[4]+"/22"+"</td>\n" +
+                                "<td>"+element[5]+"/120"+"</td>\n" +
+                                "<td>"+element[6]+"/80"+"</td>\n" +
+                                "<td>"+element[7]+"</td>\n" +
                                 "  </tr>\n" ;
                     }
 

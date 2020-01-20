@@ -113,8 +113,9 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
                         SharedPreferences.Editor editor = getSharedPreferences("login", MODE_PRIVATE).edit();
 
-                        editor.putString("Name",Name);
+                        editor.putString("Email",Email);
                         editor.putString("Password",Password);
+                        editor.putString("Name", Name);
                         editor.apply();
 
                         progressBar.setVisibility(View.GONE);
@@ -122,7 +123,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                         email.setText(null);
                         password.setText(null);
                         Intent intent = new Intent(getApplicationContext(),Profile.class);
-                        intent.putExtra("Name",Name);
+                       // intent.putExtra("Name",Name);
                         startActivity(intent);
                     }else{
                         progressBar.setVisibility(View.GONE);

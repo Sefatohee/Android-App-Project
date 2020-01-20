@@ -41,9 +41,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             SharedPreferences sharedPreferences = getSharedPreferences("login",MODE_PRIVATE);
 
             if(sharedPreferences.contains("Email") && sharedPreferences.contains("Password")){
-                Name = sharedPreferences.getString("Email","nothing");
+                Profile.Email = sharedPreferences.getString("Email","nothing");
+                Profile.name = sharedPreferences.getString("Name","nothing");
                 Intent intent = new Intent(getApplicationContext(),Profile.class);
-                intent.putExtra("Email",Name);
+                //intent.putExtra("Email",Name);
                 startActivity(intent);
             }else{
                 Intent intent = new Intent(this,SignIn.class);

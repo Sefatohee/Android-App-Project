@@ -6,9 +6,9 @@
 
 
     <item
-        android:id="@+id/review"
+        android:id="@+id/preview"
         android:icon="@drawable/ic_account_circle_black_24dp"
-        android:title="Review information"
+        android:title="Preview information"
         />
 
     <item

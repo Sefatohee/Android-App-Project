@@ -31,16 +31,18 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 import static com.android.volley.Request.Method.POST;
 
 public class Profile extends AppCompatActivity implements View.OnClickListener {
-    private EditText  date, consumed_calories,sugar_level,systolic_rate,diastolic_rate,weight,day;
+    private EditText  date, consumed_calories,sugar_level,systolic_rate,diastolic_rate,weight,month,year;
     private TextView username;
     private Button submit;
-    private ProgressBar updateprogress;
+    //private ProgressBar updateprogress;
     private DatePicker datePicker;
     private TimePicker timePicker;
     public static String Email, Date;
@@ -49,17 +51,18 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     private ProgressBar progressBar;
     public static String name;
     View view;
+    public static String message;
 
-    public static int i = 1;
     private Boolean exit = false;
+    public static Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        Bundle bundle = getIntent().getExtras();
-        Email = bundle.getString("Email");
+        //Bundle bundle = getIntent().getExtras();
+        //Email = bundle.getString("Email");
 
         progressBar = findViewById(R.id.update_pro);
         username = findViewById(R.id.username);
@@ -68,8 +71,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         timePicker = findViewById(R.id.timepicker);
         timePicker.setIs24HourView(true);
         consumed_calories = findViewById(R.id.consumed_calories);
+        month = findViewById(R.id.month);
         date = findViewById(R.id.date);
-        day = findViewById(R.id.day);
+        year = findViewById(R.id.year);
         systolic_rate = findViewById(R.id.systolicRate);
         diastolic_rate = findViewById(R.id.diastolicRate);
         weight = findViewById(R.id.weight);
@@ -77,7 +81,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         submit = findViewById(R.id.submit);
         submit.setOnClickListener(this);
         date.setOnClickListener(this);
-        day.setText(i);
 
     }
 
@@ -114,6 +117,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             Intent intent = new Intent(getApplicationContext(),About.class);
             startActivity(intent);
         }
+        else if(item.getItemId() == R.id.preview){
+            Intent intent = new Intent(getApplicationContext(),PreviewInfo.class);
+            startActivity(intent);
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -147,7 +154,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             date.append((datePicker.getMonth()+1)+"/");
             dateForAutoUpdate.append((datePicker.getMonth()+1)+"/");
         }
-
         date.append(datePicker.getYear());
         dateForAutoUpdate.append(datePicker.getYear());
         Date = dateForAutoUpdate.toString();
@@ -165,7 +171,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         final String DiastolicRate = diastolic_rate.getText().toString().trim();
         final String SystolicRate = systolic_rate.getText().toString().trim();
         final String Weight = weight.getText().toString().trim();
-        i++;
+        final String Month = month.getText().toString().trim();
+        final String Year = year.getText().toString().trim();
 
 
         if(Date.isEmpty()){
@@ -203,6 +210,24 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             weight.requestFocus();
             return;
         }
+        if(Month.isEmpty()){
+            month.setError("please enter your Month");
+            month.requestFocus();
+            return;
+        }
+        if( !Month.equalsIgnoreCase("january") && !Month.equalsIgnoreCase("february") && !Month.equalsIgnoreCase("march") && !Month.equalsIgnoreCase("april")
+                && !Month.equalsIgnoreCase("may") && !Month.equalsIgnoreCase("june") && !Month.equalsIgnoreCase("july") && !Month.equalsIgnoreCase("august")
+                && !Month.equalsIgnoreCase("september") && !Month.equalsIgnoreCase("october") && !Month.equalsIgnoreCase("november") && !Month.equalsIgnoreCase("december")){
+            month.setError("please check your spelling");
+            month.requestFocus();
+            return;
+        }
+
+        if(Year.isEmpty()){
+            year.setError("please enter your Year");
+            year.requestFocus();
+            return;
+        }
 
         StringRequest stringRequest = new StringRequest(POST, Constant.url_updateinfo, new Response.Listener<String>() {
             @Override
@@ -212,7 +237,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                     if(response.toString().equals("Updated successfully")){
 
                         progressBar.setVisibility(View.GONE);
-                       // setNotification();
+                        setNotification();
+                        year.setText(null);
+                        month.setText(null);
                         date.setText(null);
                         sugar_level.setText(null);
                         consumed_calories.setText(null);
@@ -241,8 +268,12 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
+                String UpMonth;
+                UpMonth=Month.toUpperCase();
                 Map<String,String> params= new HashMap<>();
                 params.put("Email", Email);
+                params.put("Year", Year);
+                params.put("Month", UpMonth);
                 params.put("Date",Date);
                 params.put("Sugar_level",SugarLevel);
                 params.put("CC",ConsumedCalories);
@@ -263,12 +294,11 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     public void setNotification(){
 
         String tk =sugar_level.getText().toString().trim();
-        String message;
         String Message;
         String title;
-            Message = "Hei "+name+"\n You have update your details\n "+"You have taken "+consumed_calories.getText().toString().trim()+"kilo calories today and" +
-                    "your sugar level was "+tk+" mili mol per " +
-                    "liter";
+            Message = "Hey "+name+"!! You have update your details.\n"+"You have taken "+consumed_calories.getText().toString().trim()+" kilo calories today..." +
+                    "\nyour sugar level was "+tk+" mili mol per " +
+                    "liter.\nYour blood pressure was "+systolic_rate.getText().toString().trim()+"/"+diastolic_rate.getText().toString().trim();
             title = "profile updated";
         message = Message;
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)

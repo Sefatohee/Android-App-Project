@@ -68,6 +68,8 @@ public class Personal_info extends AppCompatActivity {
                                 "<td>"+element[3]+"</td>\n" +
                                 "<td>"+element[4]+"</td>\n" +
                                 "<td>"+element[5]+"</td>\n" +
+                                "<td>"+element[6]+"</td>\n" +
+                                "<td>"+element[7]+"</td>\n" +
                                 "  </tr>\n" ;
                     }
 

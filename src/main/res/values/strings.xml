@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mess Management</string>
+    <string name="app_name">HealthRecord</string>
     <string name="Name"></string>
     <string name="Password"></string>
     <string name="visibility"></string>
