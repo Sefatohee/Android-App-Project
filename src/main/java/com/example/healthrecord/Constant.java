@@ -3,7 +3,7 @@ package com.example.healthrecord;
 public class Constant {
     private static  final String root_url = "http://192.168.31.149/HealthRecord/";
     public  static  final  String url_register = root_url+"Connect.php";
-
+    public  static  final  String url_search = root_url+"bottomQuery.php";
     public static final String url_login = root_url+"userLogin.php";
 
     public static final String url_updateinfo = root_url+"UpdateInfo.php";

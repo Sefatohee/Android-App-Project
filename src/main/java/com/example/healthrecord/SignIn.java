@@ -56,6 +56,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
             email.setText(sharedPreferences.getString("Email","nothing"));
             Profile.Email = sharedPreferences.getString("Email","nothing");
             password.setText(sharedPreferences.getString("Password","nothing"));
+
         }
 
 
@@ -103,7 +104,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                     if(info[0].equals("Successfully login")){
                         Profile.name = info[1];
                         loginprogress.setVisibility(View.GONE);
-
+                        Profile.Email = Email;
                         SharedPreferences.Editor editor = getSharedPreferences("login", MODE_PRIVATE).edit();
                         editor.putString("Email",Email);
                         editor.putString("Password",loginPass);

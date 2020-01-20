@@ -63,6 +63,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
         //Bundle bundle = getIntent().getExtras();
         //Email = bundle.getString("Email");
+        Toast.makeText(getApplicationContext(),"welcome "+Profile.Email,Toast.LENGTH_LONG).show();
 
         progressBar = findViewById(R.id.update_pro);
         username = findViewById(R.id.username);
@@ -118,7 +119,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             startActivity(intent);
         }
         else if(item.getItemId() == R.id.preview){
-            Intent intent = new Intent(getApplicationContext(),PreviewInfo.class);
+            Intent intent = new Intent(getApplicationContext(),SearchRecord.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

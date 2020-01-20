@@ -50,8 +50,10 @@ public class PreviewInfo extends AppCompatActivity {
 
     public void preview_info(){
         final String Email = Profile.Email;
+        final String Year = SearchRecord.searchYear;
+        final String Month = SearchRecord.searchMonth;
 
-        StringRequest stringRequest = new StringRequest(POST, Constant.url_personalInfo, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(POST, Constant.url_search, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -95,6 +97,8 @@ public class PreviewInfo extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params= new HashMap<>();
                 params.put("Email",Email);
+                params.put("Year",Year);
+                params.put("Month",Month);
                 return params;
             }
         };

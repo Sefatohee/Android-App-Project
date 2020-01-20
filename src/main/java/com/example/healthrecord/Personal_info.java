@@ -58,7 +58,12 @@ public class Personal_info extends AppCompatActivity {
 
 
                     String[] content = response.toString().split("\n");
-                    for(int i=0; i<content.length; i++){
+                    int ln = 0;
+                    if(content.length > 15)
+                        ln = 15;
+                    else
+                        ln = content.length;
+                    for(int i=0; i<ln; i++){
                         String[] element = content[i].split("-");
 
                         htmlMiddle +=   "   <tr>\n" +
