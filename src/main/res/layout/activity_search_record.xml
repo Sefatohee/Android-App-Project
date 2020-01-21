@@ -16,13 +16,22 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="137dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/icon2" />
         <TextView
             android:id="@+id/textv"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textColor="@android:color/holo_red_dark"
             android:text="Please enter your expected year and month name to see the related data..."
             android:textAlignment="center"

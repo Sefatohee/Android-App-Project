@@ -82,6 +82,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         submit = findViewById(R.id.submit);
         submit.setOnClickListener(this);
         date.setOnClickListener(this);
+        month.setOnClickListener(this);
+        year.setOnClickListener(this);
 
     }
 
@@ -131,11 +133,65 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             date.setText(currentDate());
         }
 
+        if(view.getId() == R.id.month){
+            month.setText(currentMonth());
+        }
+
+
+        if(view.getId() == R.id.year){
+            year.setText(currentYear());
+        }
+
+
         if(view.getId() == R.id.submit){
             update(Date,view);
         }
 
 
+    }
+
+
+    String currentYear(){
+        StringBuilder date = new StringBuilder();
+        StringBuilder dateForAutoUpdate = new StringBuilder();
+        date.append(datePicker.getYear());
+        dateForAutoUpdate.append(datePicker.getYear());
+        return date.toString();
+    }
+
+    String currentMonth(){
+        StringBuilder month = new StringBuilder();
+        StringBuilder dateForAutoUpdate = new StringBuilder();
+            month.append(""+(datePicker.getMonth()+1)+"");
+            dateForAutoUpdate.append(""+(datePicker.getMonth()+1)+"");
+            String Month = month.toString();
+            if(Month=="1")
+                Month="JANUARY";
+            else if(Month=="2")
+                Month="FEBRUARY";
+            else if(Month=="2")
+                Month="FEBRUARY";
+            else if(Month=="3")
+                Month="MARCH";
+            else if(Month=="4")
+                Month="APRIL";
+            else if(Month=="5")
+                Month="MAY";
+            else if(Month=="6")
+                Month="JUNE";
+            else if(Month=="7")
+                Month="JULY";
+            else if(Month=="8")
+                Month="AUGUST";
+            else if(Month=="9")
+                Month="SEPTEMBER";
+            else if(Month=="10")
+                Month="OCTOBER";
+            else if(Month=="11")
+                Month="NOVEMBER";
+            else if(Month=="12")
+                Month="DECEMBER";
+        return Month;
     }
 
     String currentDate(){
